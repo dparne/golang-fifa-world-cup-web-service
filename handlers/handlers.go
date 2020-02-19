@@ -20,6 +20,12 @@ func ListWinners(res http.ResponseWriter, req *http.Request) {
 			res.WriteHeader(http.StatusInternalServerError)
 		}
 		res.Write(result)
+	} else {
+		result, err := data.ListAllByYear(year)
+		if err != nil {
+			res.WriteHeader(http.StatusBadRequest)
+		}
+		res.Write(result)
 	}
 }
 
